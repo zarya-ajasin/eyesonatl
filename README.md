@@ -1,48 +1,13 @@
-# Hello website!
+# What is Eyes on Atlanta
 
-This is a basic HTML starter project you can build on however you like. No need to save. While you develop your site, your changes will happen ✨ immediately in the preview window. On the left you'll see the files that make up your site, including HTML, JavaScript, and CSS. You can upload assets like images or audio in `assets`. The rest is up to you and your imagination. 🦄
+Empowering citizens to take back power over their privacy by providing transparent information on the precise location of surveillance around the Metro Atlanta area.
 
-_Last updated: 28 Feb 2023_
+## Backround
 
-## What's in this project?
+In 2007, the Atlanta Police Foundation (APD) launched Operation Shield, an initiative to grow the city's existing surveillance network from 17 cameras at the time to 24,800 and rising. The city now has over double the amount of cameras per 1000 people than the 2nd ranked most surveilled city in the United States, making it the more surveilled city in the coutry by a wide margin.
 
-← `README.md`: That's this file, where you can tell people what your cool website does and how you built it.
+The APD says that this surveillance network has had a direct impact on the drop of crime by 25% to 50% in areas where cameras have been installed. However, when we look at data on the correlation between CCTV camera presence and crime indices around the United States, we can see that even with the 48.93 cameras per 1000 citizens, Atlanta has a crime index of 62.30 which is the 13th highest in the US. This illustrates clearly that the presence of cameras has no direct correlation with crime rates.
 
-← `index.html`: This is the main web page for your site. The HTML defines the structure and content of the page using _elements_. You'll see references in the HTML to the JS and CSS files. Try clicking the image in the center of the page!
+There is not much (if any) transparency around state surveillance data on the general public. Through some investigation on what open source collections of data existed for use to use, we were able to find data on traffic cameras from the Georgia Department of Transportation (GDOT) which represents roughly 12% of the Atlanta Surveillance network. This data source houses the precise location and camera feed of every traffic camera in the state of Georgia.
 
-← `style.css`: CSS files add styling rules to your content. The CSS applies styles to the elements in your HTML page. The style rules also make the image move when you click it.
-
-← `script.js`: If you're feeling fancy you can add interactivity to your site with JavaScript. The code in the JavaScript file runs when the page loads, and when the visitor clicks the button you can add using the code in the TODO.
-
-Open each file and check out the comments (in gray) for more info.
-
-## Try this next 🏗️
-
-Take a look in `TODO.md` for next steps you can try out in your new site!
-
-___Want a minimal version of this project to build your own website? Check out [Blank Website](https://glitch.com/edit/#!/remix/glitch-blank-website)!___
-
-## Ready to share your site?
-
-Add these meta tags for SEO and social sharing between your page `<head></head>` tags, changing the values for your site:
-
-```
-<link rel="canonical" href="https://glitch-hello-website.glitch.me/" />
-<meta name="description" content="A simple website, built with Glitch. Remix it to get your own."/>
-<meta name="robots" content="index,follow" />
-<meta property="og:title" content="Hello World!" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://glitch-hello-website.glitch.me/" />
-<meta property="og:description" content="A simple website, built with Glitch. Remix it to get your own."/>
-<meta property="og:image" content="https://cdn.glitch.com/605e2a51-d45f-4d87-a285-9410ad350515%2Fhello-website-social.png?v=1616712748147"/>
-<meta name="twitter:card" content="summary" />
-```
-
-![Glitch](https://cdn.glitch.com/a9975ea6-8949-4bab-addb-8a95021dc2da%2FLogo_Color.svg?v=1602781328576)
-
-## You built this with Glitch!
-
-[Glitch](https://glitch.com) is a friendly community where millions of people come together to build web apps and websites.
-
-- Need more help? [Check out our Help Center](https://help.glitch.com/) for answers to any common questions.
-- Ready to make it official? [Become a paid Glitch member](https://glitch.com/pricing) to boost your app with private sharing, more storage and memory, domains and more.
+In order to optimize for more control over the aesthtics and to open up the potential for scaling the project in the future, the map was translated over to Mapbox. This version can be found at eyesonatl.glitch.me
