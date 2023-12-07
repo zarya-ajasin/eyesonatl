@@ -23,58 +23,82 @@
       h1 {
         font-family: 'Roboto Mono', monospace;
       }
+
+      #content {
+        position: static;
+      }
       #map { 
         position: absolute; 
-        top: 35%; 
+        top: 45%; 
         bottom: 10%; 
         width: 75%; 
+      }
+
+      img {
+        width: 100%;
       }
     </style>
   </head>
   <body>
-    <h1>
-      EYES ON ATLANTA
-    </h1>
-    <p>
-      Atlanta is the most surveilled city in the United States. This map portrays represents roughly 12% of the Atlanta Surveillance network. 
-      The notion that surveillance is an inevitability that we have no power against is enforced by the lack of informed consent about 
-      what data is actually being gathered about us and why. The goals of this map are to address this lack of consent by 
-      illuminating the pervasiveness of the Metro Atlanta surveillance network, and by empowering citizens to take back power over 
-      their privacy by providing transparent information on the precise location of surveillance in the spaces they inhabit.
-    </p>
-    <p>
-      Use your mouse to drag the map below to navigate it. Click on the points to view the point of view of the traffic cam at that location.
-      Use the search bar to find more relevant information about surveillance cameras near you.
-    </p>
+    <div id="content">
+      <h1>
+        EYES ON ATLANTA
+      </h1>
+      <p>
+        Atlanta is the most surveilled city in the United States. This map portrays represents roughly 12% of the Atlanta Surveillance network. 
+        The notion that surveillance is an inevitability that we have no power against is enforced by the lack of informed consent about 
+        what data is actually being gathered about us and why. The goals of this map are to address this lack of consent by 
+        illuminating the pervasiveness of the Metro Atlanta surveillance network, and by empowering citizens to take back power over 
+        their privacy by providing transparent information on the precise location of surveillance in the spaces they inhabit.
+      </p>
+      <p>
+        Use your mouse to drag the map below to navigate it. Click on the points to view the point of view of the traffic cam at that location.
+        Use the search bar to find more relevant information about surveillance cameras near you.
+      </p>
+    </div>
+
     <div id="map"></div>
     <script>
-    // The value for 'accessToken' begins with 'pk...'
-    mapboxgl.accessToken = "pk.eyJ1IjoiemFyeWFqYXNpbiIsImEiOiJjbG9qbGNhYjMwaWdpMnFtaWMzNTM3Zzl4In0.aeODfKu-L03BARdLrvOZAA"; 
-    const map = new mapboxgl.Map({
-      container: "map",
-      // Replace YOUR_STYLE_URL with your style URL.
-      style: "mapbox://styles/zaryajasin/clo34p5g300d601p61hyt704i", 
-      center: [-84.39111, 33.74831],
-      zoom: 10.7
-    });
-
+      // The value for 'accessToken' begins with 'pk...'
+      mapboxgl.accessToken = "pk.eyJ1IjoiemFyeWFqYXNpbiIsImEiOiJjbG9qbGNhYjMwaWdpMnFtaWMzNTM3Zzl4In0.aeODfKu-L03BARdLrvOZAA"; 
       
-      map.on("click", (event) => {
-        // If the user clicked on one of your markers, get its information.
-        const features = map.queryRenderedFeatures(event.point, {
-          layers: ["points-1-7p86ei"] // replace with your layer name
-        });
-        if (!features.length) {
-          return;
-        }
-        const feature = features[0];
-
-        const popup = new mapboxgl.Popup({ offset: [0, -15] })
-        .setLngLat(feature.geometry.coordinates)
-        .setHTML(feature.properties.location_description + "<br>" + "<img src='feature.properties.url'></img>")
-        .addTo(map);
+      const map = new mapboxgl.Map({
+        container: "map",
+        // Replace YOUR_STYLE_URL with your style URL.
+        style: "mapbox://styles/zaryajasin/clo34p5g300d601p61hyt704i", 
+        center: [-84.39111, 33.74831],
+        zoom: 10.7
       });
-      
+
+      map.on('load', function () {
+        // Replace 'your_tileset_id' with the ID of your Mapbox tileset
+        map.addSource('zaryajasin.bxbruw9n', {
+          type: 'vector',
+          url: 'mapbox://zaryajasin.bxbruw9n'
+        });
+
+        // Add a click event to show a popup with the image on tile click
+        map.on('click', 'points-1-7p86ei', function (e) {
+          var coordinates = e.lngLat;
+          var imageUrl = e.features[0].properties.url; // Replace with the property containing the image URL
+          var descrip = e.features[0].properties.cross_street;
+
+          new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML("Camera located at " + descrip + "<br><br>" + '<img src="' + imageUrl + '">')
+            .addTo(map);
+        });
+
+        // Change the cursor to a pointer when the mouse is over the your_tileset_layer layer.
+        map.on('mouseenter', 'Points_1-7p86ei', function () {
+          map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // Change it back to a pointer when it leaves.
+        map.on('mouseleave', 'Points_1-7p86ei', function () {
+          map.getCanvas().style.cursor = '';
+        });
+      });
     
       const geocoder = new MapboxGeocoder({
         
